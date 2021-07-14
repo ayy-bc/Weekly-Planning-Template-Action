@@ -17,7 +17,7 @@ const main = async () => {
   try {
     setValues();
     var releaseCoordinator = await getUserName(rcScheduleId, startDate, endDate);
-    var firstResponder = await getFirstResponder(frScheduleId, startDate, endDate);
+    var firstResponder = await getUserName(frScheduleId, startDate, endDate);
     var releaseCoordinatorUpcoming = await getUserName(rcScheduleId, nextWeekStart, nextWeekEnd);
     var firstResponderUpcoming = await getUserName(frScheduleId, nextWeekStart, nextWeekEnd);
     var templateContent = await readTemplateFile();
