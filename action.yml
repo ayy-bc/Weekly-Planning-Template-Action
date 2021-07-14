@@ -19,6 +19,14 @@ inputs:
     description: 'Text to replace the first responder name with in the discussion template'
     required: false
     default: 'FIRST_RESPONDER_FOR_THE_WEEK'
+  upcoming-release-coordinator-placeholder-text:
+    description: 'Text to replace the first responder name with in the discussion template'
+    required: false
+    default: 'UPCOMING_RELEASE_COORDINATOR_FOR_THE_WEEK'
+  upcoming-first-responder-placeholder-text:
+    description: 'Text to replace the first responder name with in the discussion template'
+    required: false
+    default: 'UPCOMING_FIRST_RESPONDER_FOR_THE_WEEK'
 outputs:
   templatecontent:
     description: 'The generated template content for the discussion'
