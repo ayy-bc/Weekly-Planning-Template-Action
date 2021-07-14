@@ -11,6 +11,14 @@ inputs:
     description: 'Path to the template file'
     required: false
     default: './DISCUSSION_TEMPLATE/discussion.md'
+  release-coordinator-placeholder-text:
+    description: 'Text to replace the release coordinator name with in the discussion template'
+    required: false
+    default: 'RELEASE_COORDINATOR_FOR_THE_WEEK'
+  first-responder-placeholder-text:
+    description: 'Text to replace the first responder name with in the discussion template'
+    required: false
+    default: 'FIRST_RESPONDER_FOR_THE_WEEK'
 outputs:
   templatecontent:
     description: 'The generated template content for the discussion'

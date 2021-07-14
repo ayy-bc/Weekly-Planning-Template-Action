@@ -15730,9 +15730,11 @@ const main = async () => {
     var releaseCoordinator = await getReleaseCoordinator();
     var firstResponder = await getFirstResponder();
     var templateContent = await readTemplateFile();
+    const releaseCoordinatorPlaceholder = core.getInput("release-coordinator-placeholder-text");
+    const firstResponderPlaceholder = core.getInput("first-responder-placeholder-text");
 
-    templateContent = templateContent.replace("RELEASE_COORDINATOR_FOR_THE_WEEK", releaseCoordinator);
-    templateContent = templateContent.replace("FIRST_RESPONDER_FOR_THE_WEEK", firstResponder);
+    templateContent = templateContent.replace(releaseCoordinatorPlaceholder, releaseCoordinator);
+    templateContent = templateContent.replace(firstResponderPlaceholder, firstResponder);
     core.setOutput("templatecontent", templateContent);
   } catch (error) {
     core.setFailed(error.message);
