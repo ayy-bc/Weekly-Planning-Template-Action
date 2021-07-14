@@ -59,6 +59,8 @@ N/A.
 
 ## Looking Ahead
 
+- First responder next week: @UPCOMING_FIRST_RESPONDER_FOR_THE_WEEK
+- ReleaseCoordinator next week: @UPCOMING_RELEASE_COORDINATOR_FOR_THE_WEEK
 
 
 ## 📣 Team Announcements
