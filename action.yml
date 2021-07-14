@@ -1,0 +1,19 @@
+name: 'Populate planning template'
+description: 'Read the planning template and populate with necessary information'
+inputs:
+  first-responder-schedule-id:
+    description: 'The ID of the First Responder Schedule in PagerDuty'
+    required: true
+  release-coordinator-schedule-id:
+    description: 'The ID of the Release Coordinator Schedule in PagerDuty'
+    required: true
+  filename:
+    description: 'Path to the template file'
+    required: false
+    default: './DISCUSSION_TEMPLATE/discussion.md'
+outputs:
+  templatecontent:
+    description: 'The generated template content for the discussion'
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
