@@ -27,6 +27,9 @@ inputs:
     description: 'Text to replace the first responder name with in the discussion template'
     required: false
     default: 'UPCOMING_FIRST_RESPONDER_FOR_THE_WEEK'
+  team-alias:
+    description: 'Alias of all team-members separated by comma to help not ping people outside the team on discussions'
+    required: false
 outputs:
   templatecontent:
     description: 'The generated template content for the discussion'

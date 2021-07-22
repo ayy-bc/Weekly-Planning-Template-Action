@@ -9,6 +9,7 @@ const releaseCoordinatorPlaceholder = core.getInput("release-coordinator-placeho
 const firstResponderPlaceholder = core.getInput("first-responder-placeholder-text");
 const upcomingReleaseCoordinatorPlaceholder = core.getInput("upcoming-release-coordinator-placeholder-text");
 const upcomingFirstResponderPlaceholder = core.getInput("upcoming-first-responder-placeholder-text");
+const teamMembers = core.getInput("team-alias") || ""
 
 var startDate, endDate, nextWeekStart, nextWeekEnd;
 var requestOptions;
@@ -21,6 +22,12 @@ const main = async () => {
     var releaseCoordinatorUpcoming = await getUserName(rcScheduleId, nextWeekStart, nextWeekEnd);
     var firstResponderUpcoming = await getUserName(frScheduleId, nextWeekStart, nextWeekEnd);
     var templateContent = await readTemplateFile();
+    var teamAlias = getTeamMembers();
+
+    if (!teamAlias.includes(releaseCoordinator)) releaseCoordinator = '`' + releaseCoordinator + '`';
+    if (!teamAlias.includes(firstResponder)) firstResponder = '`' + firstResponder + '`';
+    if (!teamAlias.includes(releaseCoordinatorUpcoming)) releaseCoordinatorUpcoming = '`' + releaseCoordinatorUpcoming + '`';
+    if (!teamAlias.includes(firstResponderUpcoming)) firstResponderUpcoming = '`' + firstResponderUpcoming + '`';
 
     templateContent = templateContent.replace(releaseCoordinatorPlaceholder, releaseCoordinator);
     templateContent = templateContent.replace(firstResponderPlaceholder, firstResponder);
@@ -35,10 +42,11 @@ const main = async () => {
 
 const setValues = () => {
   var currentDate = new Date();
+  currentDate.setDate(currentDate.getDate() + 1); // since this is created on mondays and since that's when it changes, setting start date to tuesday
   startDate = currentDate.toISOString().slice(0, 10);
-  currentDate.setDate(currentDate.getDate() + 1); // since this is created on mondayys
+  currentDate.setDate(currentDate.getDate() + 1); // end date will be wednesday which should cover the whole week 
   endDate = currentDate.toISOString().slice(0, 10);
-  currentDate.setDate(currentDate.getDate() + 7);
+  currentDate.setDate(currentDate.getDate() + 6);
   nextWeekStart = currentDate.toISOString().slice(0, 10);
   currentDate.setDate(currentDate.getDate() + 1);
   nextWeekEnd = currentDate.toISOString().slice(0, 10);
@@ -52,6 +60,13 @@ const setValues = () => {
         },
     redirect: 'follow'
   };
+}
+
+const getTeamMembers = () => {
+  if (teamMembers === ""){
+    return []
+  }
+  return teamMembers.split(",");
 }
 
 const readTemplateFile = async () => {
